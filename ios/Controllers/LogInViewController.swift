@@ -21,7 +21,8 @@ class LogInViewController: UIViewController {
     
   
   @IBAction func login(_ sender: UIButton) {
-    // Send data
+
+    
   }
   
 }

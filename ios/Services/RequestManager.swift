@@ -10,8 +10,25 @@ import Foundation
 
 class RequestManager {
   
-  let urlPath = "http://"
+  private let urlPath = "https://ot-ugh-boger.herokuapp.com"
   
-  func postUserData()
+  static var shared = RequestManager()
+  private init() {}
+  
+  func SignIn(userName: String, password: String, completionHandler: @escaping(Result<String>) -> Void) {
+    let url = "\(urlPath)/user/token"
+    let user = User(name: userName, password: password)
+    
+    APIManager.shared.postData(url: url, data: user) { (completion: Result<String>) in
+      DispatchQueue.main.async {
+        switch completion {
+        case .success(let result):
+          completionHandler(.success(result))
+        case .failure(let error):
+          completionHandler(.failure(error))
+        }
+      }
+    }
+  }
   
 }

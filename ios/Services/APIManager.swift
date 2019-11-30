@@ -15,6 +15,9 @@ enum Result<T> {
 
 class APIManager {
   
+  static var shared = APIManager()
+  private init() {}
+  
   func getData<T: Decodable>(url: String, completion: @escaping(Result<T>) -> Void) {
     guard let url = URL(string: url) else { return completion(.failure("Invalid URL")) }
     
@@ -35,19 +38,29 @@ class APIManager {
     }.resume()
   }
   
-  func postData<T: Encodable>(url: String, data: T) {
-    guard let url = URL(string: url) else { return }
+  func postData<T: Encodable>(url: String, data: T, completion: @escaping(Result<String>) -> Void) {
+    guard let url = URL(string: url) else { return completion(.failure("Invalid URL")) }
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    guard let postData = try? JSONEncoder().encode(data) else { return }
+    guard let postData = try? JSONEncoder().encode(data) else { return completion(.failure("JSON encoder error"))}
     
-    URLSession.shared.uploadTask(with: request, from: postData) { (responseData, response, error) in
-      guard error == nil else { return }
+    URLSession.shared.uploadTask(with: request, from: postData) { (data, response, error) in
+      guard error == nil else { return completion(.failure(error!.localizedDescription)) }
       
+      guard let response = response as? HTTPURLResponse,
+          (200...299).contains(response.statusCode) else {
+          return completion(.failure("server error"))
+      }
       
+      if let mimeType = response.mimeType,
+        mimeType == "application/json",
+        let data = data {
+        let responseData = String(data: data, encoding: .utf8)
+        completion(.success(responseData!))
+      }
       
     }.resume()
   }

@@ -9,13 +9,11 @@
 import Foundation
 
 struct User: Codable {
-  var id: Int
   var name: String
   var password: String
 }
 
 struct UserToken: Codable {
-  var id: Int
   var token: String
 }
 
@@ -24,7 +22,7 @@ struct PaymentMethods: Codable {
   var type: String
 }
 
-struct Foundation : Codable {
+struct Foundation: Decodable {
   var id: Int
   var name: String
   var description: String
