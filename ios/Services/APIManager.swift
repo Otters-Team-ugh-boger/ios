@@ -35,4 +35,21 @@ class APIManager {
     }.resume()
   }
   
+  func postData<T: Encodable>(url: String, data: T) {
+    guard let url = URL(string: url) else { return }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    guard let postData = try? JSONEncoder().encode(data) else { return }
+    
+    URLSession.shared.uploadTask(with: request, from: postData) { (responseData, response, error) in
+      guard error == nil else { return }
+      
+      
+      
+    }.resume()
+  }
+  
 }
