@@ -57,9 +57,9 @@ class RequestManager {
 //    }
 //  }
   
-  func sendPrivateKey(privateKey: String, completionHandler: @escaping(Result<PaymentMethod>) -> Void) {
+  func sendPrivateKey(privateKey: String, completionHandler: @escaping(Result<ResponsePaymentMethod>) -> Void) {
     let url = "\(urlPath)/payments/methods"
-    let privateKey = PrivateKey(privateKey: privateKey, type: "ETH")
+    let privateKey = RequestPaymentMethod(type: "ETH", privateKey: privateKey)
     
     APIManager.shared.postData(url: url, data: privateKey) { (completion: Result<Data>) in
       DispatchQueue.main.async {
@@ -69,7 +69,7 @@ class RequestManager {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let json = try jsonDecoder.decode(PaymentMethod.self, from: result)
+            let json = try jsonDecoder.decode(ResponsePaymentMethod.self, from: result)
             
             completionHandler(.success(json))
           } catch let error{
@@ -97,11 +97,11 @@ class RequestManager {
     }
   }
   
-  func postPaymentsRules(completionHandler: @escaping(Result<PaymentMethod>) -> Void) {
-    let url = "\(urlPath)/payments/methods"
+  func postPaymentsRules(completionHandler: @escaping(Result<ResponsePaymentRule>) -> Void) {
+    let url = "\(urlPath)/payments/rules"
     let foundationId = userDefaults.integer(forKey: "FoundationId")
     let paymentMethodId = userDefaults.integer(forKey: "PaymentMethodId")
-    let paymentsRules = PaymentRule(paymentMethodId: paymentMethodId, foundationId: foundationId, amount: 150)
+    let paymentsRules = RequestPaymentRule(paymentMethodId: paymentMethodId, foundationId: foundationId, amount: "0.04")
     
     APIManager.shared.postData(url: url, data: paymentsRules) { (completion: Result<Data>) in
       DispatchQueue.main.async {
@@ -111,7 +111,31 @@ class RequestManager {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let json = try jsonDecoder.decode(PaymentMethod.self, from: result)
+            let json = try jsonDecoder.decode(ResponsePaymentRule.self, from: result)
+            
+            completionHandler(.success(json))
+          } catch let error{
+            completionHandler(.failure(error.localizedDescription))
+          }
+        case .failure(let error):
+          completionHandler(.failure(error))
+        }
+      }
+    }
+  }
+  
+  func postPaymentsRulesTriger(id: Int, completionHandler: @escaping(Result<Transaction>) -> Void) {
+    let url = "\(urlPath)/payments/rules/\(id)/trigger"
+    
+    APIManager.shared.postData(url: url, data: id) { (completion: Result<Data>) in
+      DispatchQueue.main.async {
+        switch completion {
+        case .success(let result):
+          do {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
+            let json = try jsonDecoder.decode(Transaction.self, from: result)
             
             completionHandler(.success(json))
           } catch let error{

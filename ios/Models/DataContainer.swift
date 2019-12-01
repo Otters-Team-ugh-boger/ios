@@ -14,18 +14,12 @@ struct User: Codable {
   var password: String
 }
 
-struct PrivateKey: Codable {
-  var privateKey: String
-  var type: String
-}
-
-struct PaymentRule: Codable {
+struct RequestPaymentRule: Codable {
   var paymentMethodId: Int
   var foundationId: Int
-  var amount: Int
+  var amount: String
 }
 
-// MARK: - Response models
 struct UserToken: Codable {
   var userId: Int
   var token: String
@@ -38,7 +32,27 @@ struct Foundation: Codable {
   var paymentAddress: String
 }
 
-struct PaymentMethod: Codable {
-  var type: String
+struct ResponsePaymentRule: Codable {
+  var paymentMethodId: Int
+  var foundationId: Int
+  var amount: Int
   var id: Int
+}
+
+struct Transaction: Codable {
+  var id: Int
+  var paymentRuleId: Int
+  var transactionHash: String
+  var createdAt: String
+}
+
+struct ResponsePaymentMethod: Codable {
+  var type: String
+  var address: String
+  var id: Int
+}
+
+struct RequestPaymentMethod: Codable {
+  var type: String
+  var privateKey: String
 }

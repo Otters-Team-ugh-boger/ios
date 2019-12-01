@@ -53,17 +53,22 @@ class APIManager {
     jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
     
     guard let postData = try? jsonEncoder.encode(data) else { return completion(.failure("JSON encoder error"))}
+    print(String(bytes: postData, encoding: .utf8))
     
     URLSession.shared.uploadTask(with: request, from: postData) { (data, response, error) in
       guard error == nil else { return completion(.failure(error!.localizedDescription)) }
       
-      guard let response = response as? HTTPURLResponse,
-          (200...299).contains(response.statusCode) else {
-          return completion(.failure("Server error"))
-      }
+//      guard let response = response as? HTTPURLResponse,
+//          (200...299).contains(response.statusCode) else {
+//          return completion(.failure("Server error"))
+//      }
+      let response = response as? HTTPURLResponse
+      print(response?.statusCode)
       
-      guard let mimeType = response.mimeType,
-        mimeType == "application/json", let data = data else { return completion(.failure(error!.localizedDescription))}
+      
+      guard let mimeType = response!.mimeType,
+        mimeType == "application/json",
+        let data = data else { return completion(.failure("No data!"))}
       
       completion(.success(data))
       

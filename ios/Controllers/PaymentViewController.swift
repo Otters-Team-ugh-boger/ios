@@ -9,13 +9,16 @@
 import UIKit
 
 class PaymentViewController: UIViewController {
+  
   @IBOutlet weak var privateKeyLabelText: UITextField!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  let userDefaults = UserDefaults.standard
+  
+  override func viewDidLoad() {
+      super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
+      // Do any additional setup after loading the view.
+  }
   
   @IBAction func sendPrivateKey(_ sender: UIButton) {
     if let privateKey = self.privateKeyLabelText.text {
@@ -23,7 +26,8 @@ class PaymentViewController: UIViewController {
         DispatchQueue.main.async {
           switch completion {
           case .success(let result):
-            print(result)
+            self.userDefaults.set(result.id, forKey: "PaymentMethodId")
+            print(result.id)
           case .failure(let error):
             print(error)
           }

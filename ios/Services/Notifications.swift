@@ -12,6 +12,7 @@ import UserNotifications
 class Notifications: NSObject, UNUserNotificationCenterDelegate {
   
   let notificationCenter = UNUserNotificationCenter.current()
+  let userDefaults = UserDefaults.standard
   
   func notificationRequest() {
     let options: UNAuthorizationOptions = [.alert, .sound]
@@ -66,6 +67,7 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
       
       switch response.actionIdentifier {
       case "Delete":
+        
           print("Delete")
       default:
           print("Unknown action")

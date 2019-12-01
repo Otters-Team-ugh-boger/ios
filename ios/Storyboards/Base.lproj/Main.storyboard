@@ -216,6 +216,9 @@
                                 <state key="normal" title="RUN">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="runAlarm:" destination="q9A-Ph-haQ" eventType="touchUpInside" id="hZB-9h-vba"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
