@@ -15,6 +15,8 @@ enum Result<T> {
 
 class APIManager {
   
+  let userDefaults = UserDefaults.standard
+  
   static var shared = APIManager()
   private init() {}
   
@@ -38,12 +40,14 @@ class APIManager {
     }.resume()
   }
   
-  func postData<T: Encodable>(url: String, data: T, completion: @escaping(Result<String>) -> Void) {
+  func postData<T: Codable>(url: String, data: T, completion: @escaping(Result<Data>) -> Void) {
     guard let url = URL(string: url) else { return completion(.failure("Invalid URL")) }
+    let token = userDefaults.string(forKey: "Token")!
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue("\(token)", forHTTPHeaderField: "Authorization")
     
     guard let postData = try? JSONEncoder().encode(data) else { return completion(.failure("JSON encoder error"))}
     
@@ -52,15 +56,13 @@ class APIManager {
       
       guard let response = response as? HTTPURLResponse,
           (200...299).contains(response.statusCode) else {
-          return completion(.failure("server error"))
+          return completion(.failure("Server error"))
       }
       
-      if let mimeType = response.mimeType,
-        mimeType == "application/json",
-        let data = data {
-        let responseData = String(data: data, encoding: .utf8)
-        completion(.success(responseData!))
-      }
+      guard let mimeType = response.mimeType,
+        mimeType == "application/json", let data = data else { return completion(.failure(error!.localizedDescription))}
+      
+      completion(.success(data))
       
     }.resume()
   }

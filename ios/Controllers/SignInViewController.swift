@@ -12,19 +12,22 @@ class SigninViewController: UIViewController {
   @IBOutlet weak var userNameLabelText: UITextField!
   @IBOutlet weak var passwordLabelText: UITextField!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  let userDefaults = UserDefaults.standard
+  
+  override func viewDidLoad() {
+      super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
+      // Do any additional setup after loading the view.
+  }
   
   @IBAction func signIn(_ sender: UIButton) {
+    
     if let userName = self.userNameLabelText.text, let password = self.passwordLabelText.text {
-      RequestManager.shared.SignIn(userName: userName, password: password) { completion in
+      RequestManager.shared.signIn(userName: userName, password: password) { completion in
         DispatchQueue.main.async {
           switch completion {
           case .success(let result):
-            print(result)
+            self.userDefaults.set(String(result.token), forKey: "Token")
           case .failure(let error):
             print(error)
           }

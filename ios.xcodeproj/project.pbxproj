@@ -15,9 +15,9 @@
 		04C2C3E22392819C00F292CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C2C3E02392819C00F292CE /* LaunchScreen.storyboard */; };
 		04C2C3EF23928D3A00F292CE /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3EE23928D3A00F292CE /* APIManager.swift */; };
 		04C2C3F32392A35C00F292CE /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3F22392A35C00F292CE /* DataContainer.swift */; };
-		04C2C3F72392BAD700F292CE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3F62392BAD700F292CE /* LogInViewController.swift */; };
+		04C2C3F72392BAD700F292CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3F62392BAD700F292CE /* SignUpViewController.swift */; };
 		04C2C3FB2392C14D00F292CE /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3FA2392C14D00F292CE /* RequestManager.swift */; };
-		04C2C3FF2392D90100F292CE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3FE2392D90100F292CE /* SigninViewController.swift */; };
+		04C2C3FF2392D90100F292CE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3FE2392D90100F292CE /* SignInViewController.swift */; };
 		04C2C4012392D9C100F292CE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4002392D9C100F292CE /* PaymentViewController.swift */; };
 		04C2C4052392DA2100F292CE /* FoundationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4042392DA2100F292CE /* FoundationTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -33,9 +33,9 @@
 		04C2C3E32392819C00F292CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C2C3EE23928D3A00F292CE /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		04C2C3F22392A35C00F292CE /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
-		04C2C3F62392BAD700F292CE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		04C2C3F62392BAD700F292CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04C2C3FA2392C14D00F292CE /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
-		04C2C3FE2392D90100F292CE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		04C2C3FE2392D90100F292CE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		04C2C4002392D9C100F292CE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		04C2C4042392DA2100F292CE /* FoundationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				04C2C3D92392819400F292CE /* MainViewController.swift */,
-				04C2C3F62392BAD700F292CE /* LogInViewController.swift */,
-				04C2C3FE2392D90100F292CE /* SigninViewController.swift */,
+				04C2C3F62392BAD700F292CE /* SignUpViewController.swift */,
+				04C2C3FE2392D90100F292CE /* SignInViewController.swift */,
 				04C2C4002392D9C100F292CE /* PaymentViewController.swift */,
 				04C2C4042392DA2100F292CE /* FoundationTableViewController.swift */,
 			);
@@ -202,8 +202,8 @@
 				04C2C3EF23928D3A00F292CE /* APIManager.swift in Sources */,
 				04C2C3F32392A35C00F292CE /* DataContainer.swift in Sources */,
 				04C2C3DA2392819400F292CE /* MainViewController.swift in Sources */,
-				04C2C3F72392BAD700F292CE /* LogInViewController.swift in Sources */,
-				04C2C3FF2392D90100F292CE /* SigninViewController.swift in Sources */,
+				04C2C3F72392BAD700F292CE /* SignUpViewController.swift in Sources */,
+				04C2C3FF2392D90100F292CE /* SignInViewController.swift in Sources */,
 				04C2C3FB2392C14D00F292CE /* RequestManager.swift in Sources */,
 				04C2C4052392DA2100F292CE /* FoundationTableViewController.swift in Sources */,
 				04C2C3D62392819400F292CE /* AppDelegate.swift in Sources */,

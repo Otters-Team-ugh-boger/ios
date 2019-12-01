@@ -8,18 +8,21 @@
 
 import Foundation
 
+
 struct User: Codable {
   var name: String
   var password: String
 }
 
-struct UserToken: Codable {
-  var token: String
+struct PrivateKey: Codable {
+  var privateKey: String
+  var type: String
 }
 
-struct PaymentMethods: Codable {
-  var id: Int
-  var type: String
+// MARK: - Response models
+struct UserToken: Decodable {
+  var userId: Int
+  var token: String
 }
 
 struct Foundation: Decodable {
@@ -27,4 +30,9 @@ struct Foundation: Decodable {
   var name: String
   var description: String
   var paymentAdress: String
+}
+
+struct PaymentMethod: Decodable {
+  var type: String
+  var id: Int
 }
