@@ -49,7 +49,10 @@ class APIManager {
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("\(token)", forHTTPHeaderField: "Authorization")
     
-    guard let postData = try? JSONEncoder().encode(data) else { return completion(.failure("JSON encoder error"))}
+    let jsonEncoder = JSONEncoder()
+    jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+    
+    guard let postData = try? jsonEncoder.encode(data) else { return completion(.failure("JSON encoder error"))}
     
     URLSession.shared.uploadTask(with: request, from: postData) { (data, response, error) in
       guard error == nil else { return completion(.failure(error!.localizedDescription)) }

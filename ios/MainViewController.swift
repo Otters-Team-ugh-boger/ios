@@ -33,6 +33,10 @@ class MainViewController: UIViewController {
       datePicker?.addTarget(self, action: #selector(dateChange), for: .valueChanged)
   }
   
+  
+  
+  // MARK: - Helpers
+  
   @objc func dateChange() {
      let formatter = DateFormatter()
      formatter.dateFormat = "HH:mm"
@@ -42,7 +46,6 @@ class MainViewController: UIViewController {
      } else {
        alarmClockLabelText.text = "None"
      }
-     
    }
    
    @objc func closeDatePicker() {

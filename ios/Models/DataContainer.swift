@@ -19,20 +19,26 @@ struct PrivateKey: Codable {
   var type: String
 }
 
+struct PaymentRule: Codable {
+  var paymentMethodId: Int
+  var foundationId: Int
+  var amount: Int
+}
+
 // MARK: - Response models
-struct UserToken: Decodable {
+struct UserToken: Codable {
   var userId: Int
   var token: String
 }
 
-struct Foundation: Decodable {
+struct Foundation: Codable {
   var id: Int
   var name: String
   var description: String
-  var paymentAdress: String
+  var paymentAddress: String
 }
 
-struct PaymentMethod: Decodable {
+struct PaymentMethod: Codable {
   var type: String
   var id: Int
 }

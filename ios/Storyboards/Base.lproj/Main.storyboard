@@ -185,6 +185,10 @@
                     <navigationItem key="navigationItem" title="Foundation" id="74g-Wt-Lh4">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="McK-Df-oqg"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="SVd-qI-ZQ0" id="h9h-R0-FDD"/>
+                        <outlet property="tableViewController" destination="SVd-qI-ZQ0" id="LLn-kz-uhn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJO-x2-GNg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +213,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="STOP">
+                                <state key="normal" title="RUN">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>

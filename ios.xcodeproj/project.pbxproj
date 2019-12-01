@@ -20,6 +20,7 @@
 		04C2C3FF2392D90100F292CE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C3FE2392D90100F292CE /* SignInViewController.swift */; };
 		04C2C4012392D9C100F292CE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4002392D9C100F292CE /* PaymentViewController.swift */; };
 		04C2C4052392DA2100F292CE /* FoundationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C4042392DA2100F292CE /* FoundationTableViewController.swift */; };
+		04C2C409239373EA00F292CE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C408239373EA00F292CE /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		04C2C3FE2392D90100F292CE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		04C2C4002392D9C100F292CE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		04C2C4042392DA2100F292CE /* FoundationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationTableViewController.swift; sourceTree = "<group>"; };
+		04C2C408239373EA00F292CE /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			children = (
 				04C2C3EE23928D3A00F292CE /* APIManager.swift */,
 				04C2C3FA2392C14D00F292CE /* RequestManager.swift */,
+				04C2C408239373EA00F292CE /* Notifications.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				04C2C4052392DA2100F292CE /* FoundationTableViewController.swift in Sources */,
 				04C2C3D62392819400F292CE /* AppDelegate.swift in Sources */,
 				04C2C4012392D9C100F292CE /* PaymentViewController.swift in Sources */,
+				04C2C409239373EA00F292CE /* Notifications.swift in Sources */,
 				04C2C3D82392819400F292CE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

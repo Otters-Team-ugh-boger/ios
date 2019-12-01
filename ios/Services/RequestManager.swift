@@ -11,6 +11,7 @@ import Foundation
 class RequestManager {
   
   private let urlPath = "https://ot-ugh-boger.herokuapp.com"
+  let userDefaults = UserDefaults.standard
   
   static var shared = RequestManager()
   private init() {}
@@ -89,6 +90,33 @@ class RequestManager {
         switch completion {
         case .success(let result):
           completionHandler(.success(result))
+        case .failure(let error):
+          completionHandler(.failure(error))
+        }
+      }
+    }
+  }
+  
+  func postPaymentsRules(completionHandler: @escaping(Result<PaymentMethod>) -> Void) {
+    let url = "\(urlPath)/payments/methods"
+    let foundationId = userDefaults.integer(forKey: "FoundationId")
+    let paymentMethodId = userDefaults.integer(forKey: "PaymentMethodId")
+    let paymentsRules = PaymentRule(paymentMethodId: paymentMethodId, foundationId: foundationId, amount: 150)
+    
+    APIManager.shared.postData(url: url, data: paymentsRules) { (completion: Result<Data>) in
+      DispatchQueue.main.async {
+        switch completion {
+        case .success(let result):
+          do {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
+            let json = try jsonDecoder.decode(PaymentMethod.self, from: result)
+            
+            completionHandler(.success(json))
+          } catch let error{
+            completionHandler(.failure(error.localizedDescription))
+          }
         case .failure(let error):
           completionHandler(.failure(error))
         }
